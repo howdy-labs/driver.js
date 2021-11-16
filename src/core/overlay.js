@@ -32,7 +32,7 @@ export default class Overlay {
     let pageOverlay = this.document.getElementById(ID_OVERLAY);
     if (!pageOverlay) {
       pageOverlay = createNodeFromString(OVERLAY_HTML);
-      document.body.appendChild(pageOverlay);
+      this.document.body.appendChild(pageOverlay);
     }
 
     this.node = pageOverlay;
@@ -57,6 +57,9 @@ export default class Overlay {
    * @public
    */
   highlight(element) {
+    console.log('In driver.js');
+    console.log(document);
+
     if (!element || !element.node) {
       console.warn('Invalid element to highlight. Must be an instance of `Element`');
       return;
