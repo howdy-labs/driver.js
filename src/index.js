@@ -47,8 +47,8 @@ export default class Driver {
       ...options,
     };
 
-    this.document = this.options.document || document;
-    this.window = this.options.window || window;
+    this.document = this.options.document;
+    this.window = this.options.window;
     this.isActivated = false;
     this.steps = [];                    // steps to be presented if any
     this.currentStep = 0;               // index for the currently highlighted step
