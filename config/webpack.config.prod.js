@@ -3,7 +3,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 module.exports = {
-  mode: 'production',
+  mode: 'development',
   entry: [
     './src/driver.scss',
     './src/index.js',
@@ -15,6 +15,7 @@ module.exports = {
     libraryTarget: 'umd',
     library: 'Driver',
     libraryExport: 'default',
+    globalObject: 'this',
   },
   module: {
     rules: [
