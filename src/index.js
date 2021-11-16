@@ -388,8 +388,8 @@ export default class Driver {
 
     // If the given element is a query selector or a DOM element?
     const domElement = isDomElement(querySelector) ? querySelector : this.document.querySelector(querySelector);
-    console.log('preparing in driver');
-    console.log(this.document);
+    console.warn('preparing in driver');
+    console.warn(this.document);
     if (!domElement) {
       console.warn(`Element to highlight ${querySelector} not found`);
       return null;
