@@ -42,17 +42,19 @@ export default class Driver {
       onReset: () => null,              // When overlay is about to be cleared
       onNext: () => null,               // When next button is clicked
       onPrevious: () => null,           // When previous button is clicked
+      window: null,
+      document: null,
       ...options,
     };
 
-    this.document = document;
-    this.window = window;
+    this.document = this.options.document || document;
+    this.window = this.options.window || window;
     this.isActivated = false;
     this.steps = [];                    // steps to be presented if any
     this.currentStep = 0;               // index for the currently highlighted step
     this.currentMovePrevented = false;  // If the current move was prevented
 
-    this.overlay = new Overlay(this.options, window, document);
+    this.overlay = new Overlay(this.options, this.window, this.document);
 
     this.onResize = this.onResize.bind(this);
     this.onKeyUp = this.onKeyUp.bind(this);
