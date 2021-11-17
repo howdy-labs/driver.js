@@ -251,11 +251,11 @@ export default class Element {
 
       const zIndex = getStyleProperty(parentNode, 'z-index', this.document);
       const opacity = parseFloat(getStyleProperty(parentNode, 'opacity'), this.document);
-      const transform = getStyleProperty(parentNode, 'transform', true, this.document);
-      const transformStyle = getStyleProperty(parentNode, 'transform-style', true, this.document);
-      const transformBox = getStyleProperty(parentNode, 'transform-box', true, this.document);
-      const filter = getStyleProperty(parentNode, 'filter', true, this.document);
-      const perspective = getStyleProperty(parentNode, 'perspective', true, this.document);
+      const transform = getStyleProperty(parentNode, 'transform', this.document, true);
+      const transformStyle = getStyleProperty(parentNode, 'transform-style', this.document, true);
+      const transformBox = getStyleProperty(parentNode, 'transform-box', this.document, true);
+      const filter = getStyleProperty(parentNode, 'filter', this.document, true);
+      const perspective = getStyleProperty(parentNode, 'perspective', this.document, true);
 
       // Stacking context gets disturbed if
       // - Parent has z-index
@@ -298,7 +298,7 @@ export default class Element {
    * @private
    */
   getStyleProperty(property) {
-    return getStyleProperty(this.node, property);
+    return getStyleProperty(this.node, property, this.document);
   }
 
   /**

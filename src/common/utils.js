@@ -18,7 +18,7 @@ export const createNodeFromString = (htmlString, doc) => {
  * @param {boolean} prefixVendor
  * @return {string}
  */
-export const getStyleProperty = (element, propertyName, prefixVendor = false, doc) => {
+export const getStyleProperty = (element, propertyName, doc, prefixVendor = false) => {
   if (prefixVendor) {
     const prefixes = ['', '-webkit-', '-ms-', 'moz-', '-o-'];
     for (let counter = 0; counter < prefixes.length; counter++) {
