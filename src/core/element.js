@@ -249,13 +249,46 @@ export default class Element {
         break;
       }
 
-      const zIndex = getStyleProperty(parentNode, 'z-index', this.document);
-      const opacity = parseFloat(getStyleProperty(parentNode, 'opacity', this.document));
-      const transform = getStyleProperty(parentNode, 'transform', this.document, true);
-      const transformStyle = getStyleProperty(parentNode, 'transform-style', this.document, true);
-      const transformBox = getStyleProperty(parentNode, 'transform-box', this.document, true);
-      const filter = getStyleProperty(parentNode, 'filter', this.document, true);
-      const perspective = getStyleProperty(parentNode, 'perspective', this.document, true);
+      const zIndex = getStyleProperty({
+        element: parentNode,
+        propertyName: 'z-index',
+        doc: this.document,
+      });
+      const opacity = parseFloat(getStyleProperty({
+        element: parentNode,
+        propertyName: 'opacity',
+        doc: this.document,
+      }));
+      const transform = getStyleProperty({
+        element: parentNode,
+        propertyName: 'transform',
+        doc: this.document,
+        vendorPrefix: true,
+      });
+      const transformStyle = getStyleProperty({
+        element: parentNode,
+        propertyName: 'transform-style',
+        doc: this.document,
+        vendorPrefix: true,
+      });
+      const transformBox = getStyleProperty({
+        element: parentNode,
+        propertyName: 'transform-box',
+        doc: this.document,
+        vendorPrefix: true,
+      });
+      const filter = getStyleProperty({
+        element: parentNode,
+        propertyName: 'filter',
+        doc: this.document,
+        vendorPrefix: true,
+      });
+      const perspective = getStyleProperty({
+        element: parentNode,
+        propertyName: 'perspective',
+        doc: this.document,
+        vendorPrefix: true,
+      });
 
       // Stacking context gets disturbed if
       // - Parent has z-index
@@ -298,7 +331,11 @@ export default class Element {
    * @private
    */
   getStyleProperty(property) {
-    return getStyleProperty(this.node, property, this.document);
+    return getStyleProperty({
+      element: this.node,
+      propertyName: property,
+      doc: this.document,
+    });
   }
 
   /**
