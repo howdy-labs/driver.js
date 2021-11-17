@@ -250,7 +250,7 @@ export default class Element {
       }
 
       const zIndex = getStyleProperty(parentNode, 'z-index', this.document);
-      const opacity = parseFloat(getStyleProperty(parentNode, 'opacity'), this.document);
+      const opacity = parseFloat(getStyleProperty(parentNode, 'opacity', this.document));
       const transform = getStyleProperty(parentNode, 'transform', this.document, true);
       const transformStyle = getStyleProperty(parentNode, 'transform-style', this.document, true);
       const transformBox = getStyleProperty(parentNode, 'transform-box', this.document, true);
