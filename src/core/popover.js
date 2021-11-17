@@ -23,7 +23,7 @@ export default class Popover extends Element {
    * @param {Window} window
    * @param {Document} document
    */
-  constructor(options, window, document) {
+  constructor(options, win, doc) {
     super();
 
     this.options = {
@@ -41,8 +41,8 @@ export default class Popover extends Element {
       ...options,
     };
 
-    this.window = window;
-    this.document = document;
+    this.window = win;
+    this.document = doc;
   }
 
   /**
@@ -55,8 +55,8 @@ export default class Popover extends Element {
       popover.parentElement.removeChild(popover);
     }
 
-    popover = createNodeFromString(POPOVER_HTML(this.options.className));
-    document.body.appendChild(popover);
+    popover = createNodeFromString(POPOVER_HTML(this.options.className), this.document);
+    this.document.body.appendChild(popover);
 
     this.node = popover;
     this.tipNode = popover.querySelector(`.${CLASS_POPOVER_TIP}`);

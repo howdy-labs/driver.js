@@ -28,12 +28,12 @@ export default class Element {
     popover,
     stage,
     overlay,
-    window,
-    document,
+    win,
+    doc,
   } = {}) {
     this.node = node;
-    this.document = document;
-    this.window = window;
+    this.document = doc;
+    this.window = win;
     this.options = options;
     this.overlay = overlay;
     this.popover = popover;
@@ -116,10 +116,9 @@ export default class Element {
   getCalculatedPosition() {
     const body = this.document.body;
     const documentElement = this.document.documentElement;
-    const window = this.window;
 
     const scrollTop = this.window.pageYOffset || documentElement.scrollTop || body.scrollTop;
-    const scrollLeft = window.pageXOffset || documentElement.scrollLeft || body.scrollLeft;
+    const scrollLeft = this.window.pageXOffset || documentElement.scrollLeft || body.scrollLeft;
     const elementRect = this.node.getBoundingClientRect();
 
     return new Position({
@@ -250,13 +249,13 @@ export default class Element {
         break;
       }
 
-      const zIndex = getStyleProperty(parentNode, 'z-index');
-      const opacity = parseFloat(getStyleProperty(parentNode, 'opacity'));
-      const transform = getStyleProperty(parentNode, 'transform', true);
-      const transformStyle = getStyleProperty(parentNode, 'transform-style', true);
-      const transformBox = getStyleProperty(parentNode, 'transform-box', true);
-      const filter = getStyleProperty(parentNode, 'filter', true);
-      const perspective = getStyleProperty(parentNode, 'perspective', true);
+      const zIndex = getStyleProperty(parentNode, 'z-index', this.document);
+      const opacity = parseFloat(getStyleProperty(parentNode, 'opacity'), this.document);
+      const transform = getStyleProperty(parentNode, 'transform', true, this.document);
+      const transformStyle = getStyleProperty(parentNode, 'transform-style', true, this.document);
+      const transformBox = getStyleProperty(parentNode, 'transform-box', true, this.document);
+      const filter = getStyleProperty(parentNode, 'filter', true, this.document);
+      const perspective = getStyleProperty(parentNode, 'perspective', true, this.document);
 
       // Stacking context gets disturbed if
       // - Parent has z-index

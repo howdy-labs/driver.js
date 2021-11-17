@@ -3,8 +3,8 @@
  * @param  {String} htmlString to convert
  * @return {HTMLElement|Node}   Converted node element
  */
-export const createNodeFromString = (htmlString) => {
-  const div = document.createElement('div');
+export const createNodeFromString = (htmlString, doc) => {
+  const div = doc.createElement('div');
   div.innerHTML = htmlString.trim();
 
   // Change this to div.childNodes to support multiple top-level nodes
@@ -18,7 +18,7 @@ export const createNodeFromString = (htmlString) => {
  * @param {boolean} prefixVendor
  * @return {string}
  */
-export const getStyleProperty = (element, propertyName, prefixVendor = false) => {
+export const getStyleProperty = (element, propertyName, prefixVendor = false, doc) => {
   if (prefixVendor) {
     const prefixes = ['', '-webkit-', '-ms-', 'moz-', '-o-'];
     for (let counter = 0; counter < prefixes.length; counter++) {
@@ -37,8 +37,8 @@ export const getStyleProperty = (element, propertyName, prefixVendor = false) =>
 
   if (element.currentStyle) {
     propertyValue = element.currentStyle[propertyName];
-  } else if (document.defaultView && document.defaultView.getComputedStyle) {
-    propertyValue = document.defaultView
+  } else if (doc.defaultView && doc.defaultView.getComputedStyle) {
+    propertyValue = doc.defaultView
       .getComputedStyle(element, null)
       .getPropertyValue(propertyName);
   }

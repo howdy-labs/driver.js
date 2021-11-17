@@ -12,12 +12,12 @@ export default class Stage extends Element {
    * @param {Window} window
    * @param {Document} document
    */
-  constructor(options, window, document) {
+  constructor(options, win, doc) {
     super();
 
     this.options = options;
-    this.window = window;
-    this.document = document;
+    this.window = win;
+    this.document = doc;
   }
 
   /**
@@ -27,8 +27,8 @@ export default class Stage extends Element {
   attachNode() {
     let stage = this.document.getElementById(ID_STAGE);
     if (!stage) {
-      stage = createNodeFromString(STAGE_HTML);
-      document.body.appendChild(stage);
+      stage = createNodeFromString(STAGE_HTML, this.document);
+      this.document.body.appendChild(stage);
     }
 
     this.node = stage;

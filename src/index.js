@@ -97,7 +97,7 @@ export default class Driver {
     // Binding both touch and click results in popup getting shown and then immediately get hidden.
     // Adding the check to not bind the click event if the touch is supported i.e. on mobile devices
     // Issue: https://github.com/kamranahmedse/driver.js/issues/150
-    if (!('ontouchstart' in document.documentElement)) {
+    if (!('ontouchstart' in this.document.documentElement)) {
       this.window.addEventListener('click', this.onClick, false);
     } else {
       this.window.addEventListener('touchstart', this.onClick, false);

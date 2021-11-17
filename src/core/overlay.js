@@ -11,15 +11,15 @@ export default class Overlay {
    * @param {Window} window
    * @param {Document} document
    */
-  constructor(options, window, document) {
+  constructor(options, win, doc) {
     this.options = options;
 
     this.highlightedElement = null;              // currently highlighted dom element (instance of Element)
     this.lastHighlightedElement = null;          // element that was highlighted before current one
     this.hideTimer = null;
 
-    this.window = window;
-    this.document = document;
+    this.window = win;
+    this.document = doc;
 
     this.removeNode = this.removeNode.bind(this);
   }
@@ -31,7 +31,7 @@ export default class Overlay {
   attachNode() {
     let pageOverlay = this.document.getElementById(ID_OVERLAY);
     if (!pageOverlay) {
-      pageOverlay = createNodeFromString(OVERLAY_HTML);
+      pageOverlay = createNodeFromString(OVERLAY_HTML, this.document);
       this.document.body.appendChild(pageOverlay);
     }
 
@@ -57,8 +57,8 @@ export default class Overlay {
    * @public
    */
   highlight(element) {
-    console.log('In driver.js');
-    console.log(document);
+    // console.log('In driver.js');
+    // console.log(document);
 
     if (!element || !element.node) {
       console.warn('Invalid element to highlight. Must be an instance of `Element`');
@@ -108,7 +108,7 @@ export default class Overlay {
 
     this.attachNode();
 
-    window.setTimeout(() => {
+    this.window.setTimeout(() => {
       this.node.style.opacity = `${this.options.opacity}`;
       this.node.style.position = 'fixed';
       this.node.style.left = '0';
