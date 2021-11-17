@@ -425,8 +425,8 @@ export default class Driver {
       popover,
       stage,
       overlay: this.overlay,
-      window: this.window,
-      document: this.document,
+      win: this.window,
+      doc: this.document,
     });
   }
 
